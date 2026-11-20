@@ -1,0 +1,50 @@
+{
+  "versions": [
+    {
+      "id": "v1",
+      "name": "V1 — Baseline",
+      "description": "Simple instruction with minimal security constraints. Contains protected information but relies on a basic 'do not share' instruction with no structured defense.",
+      "file": "v1.txt",
+      "changes_from_previous": null,
+      "key_features": [
+        "Basic instruction to not share confidential information",
+        "No instruction hierarchy",
+        "No explicit handling of untrusted content",
+        "No refusal behavior guidelines",
+        "No encoding/obfuscation protections"
+      ],
+      "created_at": "2025-01-01T00:00:00Z"
+    },
+    {
+      "id": "v2",
+      "name": "V2 — Hardened",
+      "description": "Explicitly defines instruction hierarchy, protected information handling, refusal behavior, and untrusted content processing. Significantly more resistant to common attacks.",
+      "file": "v2.txt",
+      "changes_from_previous": "Added instruction hierarchy (system > user > untrusted), explicit secret protection rules, refusal behavior guidelines, untrusted content handling policy",
+      "key_features": [
+        "Three-level instruction hierarchy",
+        "Explicit list of extraction attack patterns to reject",
+        "Structured refusal behavior",
+        "Untrusted content handling rules",
+        "Protection against authority claims"
+      ],
+      "created_at": "2025-01-15T00:00:00Z"
+    },
+    {
+      "id": "v3",
+      "name": "V3 — Refined",
+      "description": "Builds on V2 with structured response requirements, concrete examples of correct refusal, encoding/obfuscation protection, improved benign request handling, and self-reference rules.",
+      "file": "v3.txt",
+      "changes_from_previous": "Added concrete refusal examples, encoding/obfuscation protection, improved benign request handling (avoid false positives), structured response format, self-reference rules, completion attack protection",
+      "key_features": [
+        "Concrete examples of correct refusal behavior",
+        "Protection against encoded extraction (base64, hex, rot13)",
+        "Explicit benign request handling to reduce false positives",
+        "Structured response format requirements",
+        "Self-reference rules to prevent system prompt disclosure",
+        "Completion attack protection"
+      ],
+      "created_at": "2025-02-01T00:00:00Z"
+    }
+  ]
+}
