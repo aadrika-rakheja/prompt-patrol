@@ -36,17 +36,25 @@ app = FastAPI(
 )
 
 # CORS middleware
+# Allow credentials with specific origins or allow all when wildcard/empty
 origins = [origin.strip() for origin in settings.CORS_ORIGINS.split(",") if origin.strip()]
-if not origins:
-    origins = ["*"]
-
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=origins,
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
+if not origins or "*" in origins:
+    app.add_middleware(
+        CORSMiddleware,
+        allow_origins=["*"],
+        allow_credentials=False,
+        allow_methods=["*"],
+        allow_headers=["*"],
+    )
+else:
+    app.add_middleware(
+        CORSMiddleware,
+        allow_origin_regex=r"https://.*\.vercel\.app|http://localhost:.*",
+        allow_origins=origins,
+        allow_credentials=True,
+        allow_methods=["*"],
+        allow_headers=["*"],
+    )
 
 # Include routers under /api
 app.include_router(health.router, prefix="/api")
